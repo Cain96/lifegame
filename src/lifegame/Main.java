@@ -5,6 +5,7 @@ package lifegame;
  */
 public class Main {
 	public static void main (String args[]){
-		System.out.print("ほげ");
+		BoardModel model = new BoardModel(10, 10);
+		model.printForDebug();
 	}
 }
