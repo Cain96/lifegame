@@ -1,3 +1,5 @@
+package lifegame;
+
 /**
  * Created by kuro on 2016/10/13.
  */
