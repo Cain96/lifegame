@@ -158,6 +158,6 @@ public class BoardModel {
 
 	//生死判断method
 	public boolean isAlive(int x, int y) {
-		return cells[x][y]
+		return cells[x][y];
 	}
 }
