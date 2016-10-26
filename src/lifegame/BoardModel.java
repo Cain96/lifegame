@@ -20,7 +20,7 @@ public class BoardModel {
 		rows = r;
 		cells = new boolean[rows][cols];
 		listeners = new ArrayList<BoardListener>();
-		cellsListHelper = new CellsListHelper();
+		cellsListHelper = new CellsListHelper(new Settings());
 	}
 
 	public int getCols() {

@@ -1,7 +1,10 @@
 package lifegame;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 /**
  * Created by kuro on 2016/10/13.
@@ -33,8 +36,13 @@ public class Main implements Runnable {
 
 		//ウィンドウ内部のベースパネルの作成
 		JPanel base = new JPanel();
+		frame.setContentPane(base);
 		frame.setPreferredSize(new Dimension(400, 300)); //希望サイズの指定
 		frame.setMinimumSize(new Dimension(300, 200)); //最小サイズの指定
+
+		base.setLayout(new BorderLayout());
+		BoardView view = new BoardView(new Settings());
+		base.add(view, BorderLayout.CENTER); //baseの中心にviewを配置
 
 		frame.pack();
 		frame.setVisible(true);

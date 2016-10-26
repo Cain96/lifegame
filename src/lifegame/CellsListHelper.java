@@ -12,8 +12,7 @@ public class CellsListHelper {
 	private int c, r;
 	private Settings settings;
 
-	public CellsListHelper() {
-		settings = new Settings();
+	public CellsListHelper(Settings settings) {
 		c = settings.getCols();
 		r = settings.getRows();
 	}
