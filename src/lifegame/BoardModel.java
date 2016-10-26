@@ -8,11 +8,13 @@ public class BoardModel {
 	private int rows;
 	private int oldCounter=0;
 	private boolean[][] cells = new boolean[rows][cols];
+	private List<BoardListener> listeners;
 
 	public BoardModel(int c, int r) {
 		cols = c;
 		rows = r;
 		cells = new boolean[rows][cols];
+		listeners = new ArrayList<BoardListener>();
 	}
 
 	public int getCols() {
