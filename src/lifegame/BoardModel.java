@@ -10,7 +10,7 @@ public class BoardModel {
 
 	private int cols;
 	private int rows;
-	private int oldCounter=0;
+	private int oldCounter = 0;
 	private boolean[][] cells = new boolean[rows][cols];
 	private List<BoardListener> listeners;
 	private CellsListHelper cellsListHelper;
@@ -47,7 +47,7 @@ public class BoardModel {
 
 	//指定されたセルの状態を変更するmethod
 	public void changeCellState(int x, int y) {
-			addOldCells();
+		addOldCells();
 		cells[y][x] = !cells[y][x];
 		fireUpdate();
 	}
@@ -85,11 +85,11 @@ public class BoardModel {
 	}
 
 	//oldCellsに格納するmethod
-	private void addOldCells(){
-		if(oldCounter<32) {
+	private void addOldCells() {
+		if (oldCounter < 32) {
 			cellsListHelper.addList(cells);
 			oldCounter++;
-		}else{
+		} else {
 			cellsListHelper.removeList();
 			cellsListHelper.addList(cells);
 			oldCounter++;
@@ -142,17 +142,22 @@ public class BoardModel {
 		try {
 			cells = cellsListHelper.getList();
 			fireUpdate();
-		}catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Not Found");
 		}
 	}
 
 	//巻き戻し可能か否かmethod
-	public boolean isUndoable(){
-		if(cellsListHelper.returnListSize()<1){
+	public boolean isUndoable() {
+		if (cellsListHelper.returnListSize() < 1) {
 			return false;
-		}else{
+		} else {
 			return true;
 		}
+	}
+
+	//生死判断method
+	public boolean isAlive(int x, int y) {
+		return cells[x][y]
 	}
 }
