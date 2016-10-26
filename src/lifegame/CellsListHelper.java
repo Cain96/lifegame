@@ -30,10 +30,10 @@ public class CellsListHelper {
 
 	//cellのDeepCopyMethod
 	private void copyCells(boolean[][] cell) {
-		oldCell = new boolean[c][r];
+		oldCell = new boolean[r][c];
 		for (int i = 0; i < cell[0].length; i++) {
 			for (int j = 0; j < cell.length; j++) {
-				oldCell[i][j] = cell[i][j];
+				oldCell[j][i] = cell[j][i];
 			}
 		}
 	}
