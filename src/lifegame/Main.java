@@ -19,13 +19,6 @@ public class Main {
 		model.changeCellState(2, 3);
 		model.changeCellState(4, 4);
 		model.changeCellState(4, 4);
-
-		for (int i = 0; i < 30; ++i) {
-			model.next();
-		}
-
-		while (model.isUndoable()) {
-			model.undo();
-		}
+		
 	}
 }
