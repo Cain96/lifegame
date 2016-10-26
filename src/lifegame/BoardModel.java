@@ -55,4 +55,61 @@ public class BoardModel {
 			listener.updated(this);
 		}
 	}
+
+	//一世代更新後fireUpdateを呼び出すmethod
+	public void next() {
+		int aliveCount = 0;
+		boolean[][] nextCells = new boolean[rows][cols];
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[0].length; j++) {
+				aliveCount = aliveCounter(i, j);
+				nextCells[i][j] = deadOrAliveJudge(i, j, aliveCount);
+			}
+		}
+		for (int i = 0; i < cells.length; i++) {
+			cells[i] = nextCells[i].clone();
+		}
+
+		fireUpdate();
+	}
+	//生数カウントmethod
+	private int aliveCounter(int x, int y) {
+		int alive = 0;
+		int near[][] = {
+				{-1, -1}, {0, -1}, {1, -1},
+				{-1, 0}, {1, 0},
+				{-1, 1}, {0, 1}, {1, 1}
+		};
+
+		for (int k = 0; k < 8; k++) {
+			int x0 = x + near[k][0];
+			int y0 = y + near[k][1];
+
+			try {
+				if (cells[x0][y0]) {
+					alive++;
+				}
+			} catch (ArrayIndexOutOfBoundsException e) {
+				continue;
+			}
+		}
+		return alive;
+	}
+
+	//生死決定method
+	private boolean deadOrAliveJudge(int i, int j, int aliveCount) {
+		if (aliveCount < 2 | 3 < aliveCount) { //2,3以外の時
+			if (cells[i][j]) {
+				return !cells[i][j];
+			} else {
+				return cells[i][j];
+			}
+		} else {
+			if (!cells[i][j] && aliveCount == 3) { //死んでいてかつ3の時
+				return !cells[i][j];
+			} else {
+				return cells[i][j];
+			}
+		}
+	}
 }
