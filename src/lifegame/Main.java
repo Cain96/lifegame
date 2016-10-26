@@ -23,5 +23,9 @@ public class Main {
 		for(int i=0; i<30; ++i) {
 			model.next();
 		}
+
+		for (int i=0; i<35; ++i) {
+			model.undo();
+		}
 	}
 }

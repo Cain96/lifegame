@@ -1,20 +1,26 @@
 package lifegame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by kuro on 2016/10/14.
  */
 public class BoardModel {
+
 	private int cols;
 	private int rows;
 	private int oldCounter=0;
 	private boolean[][] cells = new boolean[rows][cols];
 	private List<BoardListener> listeners;
+	private CellsListHelper cellsListHelper;
 
 	public BoardModel(int c, int r) {
 		cols = c;
 		rows = r;
 		cells = new boolean[rows][cols];
 		listeners = new ArrayList<BoardListener>();
+		cellsListHelper = new CellsListHelper();
 	}
 
 	public int getCols() {
@@ -62,6 +68,9 @@ public class BoardModel {
 	public void next() {
 		int aliveCount = 0;
 		boolean[][] nextCells = new boolean[rows][cols];
+
+		addOldCells();
+
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[0].length; j++) {
 				aliveCount = aliveCounter(i, j);
@@ -74,6 +83,19 @@ public class BoardModel {
 
 		fireUpdate();
 	}
+
+	//oldCellsに格納するmethod
+	private void addOldCells(){
+		if(oldCounter<32) {
+			cellsListHelper.addList(cells);
+			oldCounter++;
+		}else{
+			cellsListHelper.removeList();
+			cellsListHelper.addList(cells);
+			oldCounter++;
+		}
+	}
+
 	//生数カウントmethod
 	private int aliveCounter(int x, int y) {
 		int alive = 0;
@@ -112,6 +134,25 @@ public class BoardModel {
 			} else {
 				return cells[i][j];
 			}
+		}
+	}
+
+	//巻き戻しmethod
+	public void undo() {
+		try {
+			cells = cellsListHelper.getList();
+			fireUpdate();
+		}catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Not Found");
+		}
+	}
+
+	//巻き戻し可能か否かmethod
+	public boolean isUndoable(){
+		if(cellsListHelper.returnListSize()<1){
+			return false;
+		}else{
+			return true;
 		}
 	}
 }
