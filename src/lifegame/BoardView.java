@@ -9,13 +9,11 @@ import java.awt.Graphics;
 public class BoardView extends JPanel {
 
 	int c, r;
-	private BoardModel boardModel;
-	private boolean[][] cells;
+	private Settings settings;
 
-	public BoardView(Settings settings) {
+	public BoardView(Settings settings){
 		c = settings.getCols();
 		r = settings.getRows();
-		boardModel = new BoardModel(c, r);
 	}
 
 	@Override
@@ -26,10 +24,6 @@ public class BoardView extends JPanel {
 			g.drawLine(20, 20 * i, 20 * (c + 1), 20 * i);
 			g.drawLine(20 * (i + 1), 0, 20 * (i + 1), 20 * r);
 		}
-	}
 
-	private boolean isAlive(int x, int y) {
-		cells = boardModel.getCells();
-		return cells[x][y];
 	}
 }

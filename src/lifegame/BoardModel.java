@@ -11,7 +11,6 @@ public class BoardModel {
 	private int cols;
 	private int rows;
 	private int oldCounter=0;
-
 	private boolean[][] cells = new boolean[rows][cols];
 	private List<BoardListener> listeners;
 	private CellsListHelper cellsListHelper;
@@ -30,10 +29,6 @@ public class BoardModel {
 
 	public int getRows() {
 		return rows;
-	}
-
-	public boolean[][] getCells() {
-		return cells;
 	}
 
 	//Debug用盤面の状態を出力するmethod
