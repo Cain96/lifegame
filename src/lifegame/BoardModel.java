@@ -11,7 +11,8 @@ public class BoardModel {
 	private int cols;
 	private int rows;
 	private int oldCounter = 0;
-	private boolean[][] cells = new boolean[rows][cols];
+
+	private boolean[][] cells;
 	private List<BoardListener> listeners;
 	private CellsListHelper cellsListHelper;
 
@@ -158,6 +159,6 @@ public class BoardModel {
 
 	//生死判断method
 	public boolean isAlive(int x, int y) {
-		return cells[x][y];
+		return cells[y][x];
 	}
 }

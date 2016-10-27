@@ -42,6 +42,7 @@ public class Main implements Runnable {
 
 		base.setLayout(new BorderLayout());
 		BoardView view = new BoardView(new Settings());
+		BoardView view = new BoardView(new Settings(), model);
 		base.add(view, BorderLayout.CENTER); //baseの中心にviewを配置
 
 		frame.pack();

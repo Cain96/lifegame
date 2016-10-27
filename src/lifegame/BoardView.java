@@ -8,11 +8,14 @@ import java.awt.Graphics;
  */
 public class BoardView extends JPanel {
 
-	int c, r, w, h, interval;
+	private int c, r, w, h, interval;
+	private BoardModel boardModel;
 
-	public BoardView(Settings settings) {
+	public BoardView(Settings settings, BoardModel model) {
 		c = settings.getCols();
 		r = settings.getRows();
+		boardModel = model;
+
 	}
 
 	@Override
@@ -30,6 +33,14 @@ public class BoardView extends JPanel {
 		for (int i = 0; i < r + 1; i++) {
 			g.drawLine(interval * i, 0, interval * i, interval * c); //縦線
 		}
+
+		for (int i = 0; i < r; i++) {
+			for (int j = 0; j < c; j++) {
+				if (boardModel.isAlive(i, j)) {
+					g.fillRect(fillCellCoordinate(i), fillCellCoordinate(j), interval, interval);
+				}
+			}
+		}
 	}
 
 	public int widthHeightCheck(int w, int h) {
@@ -40,4 +51,10 @@ public class BoardView extends JPanel {
 			return w;
 		}
 	}
+
+	public int fillCellCoordinate(int x) {
+		return x * interval;
+	}
+
+
 }
