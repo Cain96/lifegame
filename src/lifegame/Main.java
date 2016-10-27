@@ -1,5 +1,6 @@
 package lifegame;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -49,6 +50,11 @@ public class Main implements Runnable {
 		JPanel buttonPanel = new JPanel();
 		base.add(buttonPanel, BorderLayout.SOUTH);
 		buttonPanel.setLayout(new FlowLayout());
+		JButton nextButton = new JButton();
+		nextButton.setText("Next");
+		buttonPanel.add(nextButton);
+		NextButton buttonNext = new NextButton(view, model);
+		nextButton.addActionListener(buttonNext);
 
 		frame.pack();
 		frame.setVisible(true);
