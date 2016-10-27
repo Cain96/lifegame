@@ -61,7 +61,7 @@ public class BoardModel {
 	}
 
 	//listenerのupdateを行うためのmethod
-	private void fireUpdate() {
+	public void fireUpdate() {
 		for (BoardListener listener : listeners) {
 			listener.updated(this);
 		}

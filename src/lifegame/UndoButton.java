@@ -16,11 +16,11 @@ public class UndoButton implements ActionListener {
 		boardView = view;
 	}
 
-	public void undo() {
+	private void undo() {
 		boardModel.undo();
 	}
 
-	public void repaint() {
+	private void repaint() {
 		boardView.repaint();
 	}
 

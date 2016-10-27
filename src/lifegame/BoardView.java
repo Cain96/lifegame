@@ -66,10 +66,6 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 		return x * interval;
 	}
 
-	private int calculateMousePosition(int x) {
-		return x / interval;
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
