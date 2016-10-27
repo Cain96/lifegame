@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 /**
  * Created by kuro on 2016/10/13.
@@ -41,9 +42,13 @@ public class Main implements Runnable {
 		frame.setMinimumSize(new Dimension(300, 200)); //最小サイズの指定
 
 		base.setLayout(new BorderLayout());
-		BoardView view = new BoardView(new Settings());
 		BoardView view = new BoardView(new Settings(), model);
 		base.add(view, BorderLayout.CENTER); //baseの中心にviewを配置
+
+		//ボタンパネルの作成
+		JPanel buttonPanel = new JPanel();
+		base.add(buttonPanel, BorderLayout.SOUTH);
+		buttonPanel.setLayout(new FlowLayout());
 
 		frame.pack();
 		frame.setVisible(true);
