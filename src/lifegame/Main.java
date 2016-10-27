@@ -50,11 +50,20 @@ public class Main implements Runnable {
 		JPanel buttonPanel = new JPanel();
 		base.add(buttonPanel, BorderLayout.SOUTH);
 		buttonPanel.setLayout(new FlowLayout());
+
+		//nextButton作成
 		JButton nextButton = new JButton();
 		nextButton.setText("Next");
 		buttonPanel.add(nextButton);
 		NextButton buttonNext = new NextButton(view, model);
 		nextButton.addActionListener(buttonNext);
+
+		//undoButton作成
+		JButton undoButton = new JButton();
+		undoButton.setText("Undo");
+		buttonPanel.add(undoButton);
+		UndoButton buttonUndo = new UndoButton(view, model);
+		undoButton.addActionListener(buttonUndo);
 
 		frame.pack();
 		frame.setVisible(true);
