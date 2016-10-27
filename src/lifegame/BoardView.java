@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Arrays;
 
 /**
  * Created by kuro on 2016/10/26.
@@ -13,6 +14,9 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 
 	private int c, r, w, h, interval;
 	private BoardModel boardModel;
+	private boolean flag = true;
+	private int oldMousePoint[] = new int[2];
+
 
 	public BoardView(Settings settings, BoardModel model) {
 		c = settings.getCols();
@@ -72,9 +76,11 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+
 		int mousePoint[] = {e.getX() / interval, e.getY() / interval};
 		boardModel.changeCellState(mousePoint[0], mousePoint[1]);
+
+		oldMousePoint = mousePoint.clone();
 
 		repaint();
 	}
@@ -97,6 +103,20 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	@Override
 	public void mouseDragged(MouseEvent e) {
 
+		int mousePoint[] = {e.getX() / interval, e.getY() / interval};
+
+		if (Arrays.equals(mousePoint,oldMousePoint)) {
+			flag = false;
+		} else {
+			flag = true;
+		}
+
+		if (flag) {
+			boardModel.changeCellState(mousePoint[0], mousePoint[1]);
+			repaint();
+		}
+
+		oldMousePoint = mousePoint.clone();
 	}
 
 	@Override
