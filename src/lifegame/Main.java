@@ -71,7 +71,7 @@ public class Main implements Runnable {
 				undoButton.setEnabled(m.isUndoable());
 			}
 		});
-		
+
 
 		frame.pack();
 		frame.setVisible(true);

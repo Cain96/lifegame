@@ -2,11 +2,14 @@ package lifegame;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * Created by kuro on 2016/10/26.
  */
-public class BoardView extends JPanel {
+public class BoardView extends JPanel implements MouseListener, MouseMotionListener {
 
 	private int c, r, w, h, interval;
 	private BoardModel boardModel;
@@ -15,6 +18,9 @@ public class BoardView extends JPanel {
 		c = settings.getCols();
 		r = settings.getRows();
 		boardModel = model;
+
+		this.addMouseListener(this);
+		this.addMouseMotionListener(this);
 
 	}
 
@@ -43,7 +49,7 @@ public class BoardView extends JPanel {
 		}
 	}
 
-	public int widthHeightCheck(int w, int h) {
+	private int widthHeightCheck(int w, int h) {
 
 		if (w > h) {
 			return h;
@@ -52,9 +58,46 @@ public class BoardView extends JPanel {
 		}
 	}
 
-	public int fillCellCoordinate(int x) {
+	private int fillCellCoordinate(int x) {
 		return x * interval;
 	}
 
 
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		System.err.println("Pressed: " + e.getX() + "," + e.getY());
+
+		boardModel.changeCellState(1, 1);
+		repaint();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+
+	}
 }
