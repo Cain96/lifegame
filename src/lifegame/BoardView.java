@@ -62,7 +62,9 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 		return x * interval;
 	}
 
-
+	private int calculateMousePosition(int x) {
+		return x / interval;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -70,9 +72,10 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.err.println("Pressed: " + e.getX() + "," + e.getY());
+		
+		int mousePoint[] = {e.getX() / interval, e.getY() / interval};
+		boardModel.changeCellState(mousePoint[0], mousePoint[1]);
 
-		boardModel.changeCellState(1, 1);
 		repaint();
 	}
 
