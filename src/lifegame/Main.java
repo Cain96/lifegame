@@ -21,15 +21,7 @@ public class Main implements Runnable {
 	public void run() {
 		settings = new Settings();
 		BoardModel model = new BoardModel(settings.getCols(), settings.getRows());
-		model.addlistener(new ModelPrinter());
-
-		model.changeCellState(1, 1);
-		model.changeCellState(2, 2);
-		model.changeCellState(0, 3);
-		model.changeCellState(1, 3);
-		model.changeCellState(2, 3);
-		model.changeCellState(4, 4);
-		model.changeCellState(4, 4);
+		model.addlistener(new BoardView(settings, model));
 
 		//ウィンドウの作成
 		JFrame frame = new JFrame();
@@ -71,10 +63,8 @@ public class Main implements Runnable {
 				undoButton.setEnabled(m.isUndoable());
 			}
 		});
-
-
+		
 		frame.pack();
 		frame.setVisible(true);
 	}
-
 }

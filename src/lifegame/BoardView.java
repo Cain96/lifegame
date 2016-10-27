@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * Created by kuro on 2016/10/26.
  */
-public class BoardView extends JPanel implements MouseListener, MouseMotionListener {
+public class BoardView extends JPanel implements MouseListener, MouseMotionListener, BoardListener {
 
 	private int c, r, w, h, interval;
 	private BoardModel boardModel;
@@ -105,7 +105,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 
 		int mousePoint[] = {e.getX() / interval, e.getY() / interval};
 
-		if (Arrays.equals(mousePoint,oldMousePoint)) {
+		if (Arrays.equals(mousePoint, oldMousePoint)) {
 			flag = false;
 		} else {
 			flag = true;
@@ -122,5 +122,11 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	@Override
 	public void mouseMoved(MouseEvent e) {
 
+	}
+
+	@Override
+	public void updated(BoardModel m) {
+		m.printForDebug();
+		System.out.println();
 	}
 }
