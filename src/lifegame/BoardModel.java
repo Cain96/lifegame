@@ -13,6 +13,8 @@ public class BoardModel {
 	private int oldCounter = 0;
 
 	private boolean[][] cells;
+
+
 	private List<BoardListener> listeners;
 	private CellsListHelper cellsListHelper;
 
@@ -64,6 +66,7 @@ public class BoardModel {
 			listener.updated(this);
 		}
 	}
+
 
 	//一世代更新後fireUpdateを呼び出すmethod
 	public void next() {

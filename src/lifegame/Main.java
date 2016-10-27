@@ -65,7 +65,16 @@ public class Main implements Runnable {
 		UndoButton buttonUndo = new UndoButton(view, model);
 		undoButton.addActionListener(buttonUndo);
 
+		model.addlistener(new BoardListener() {
+			@Override
+			public void updated(BoardModel m) {
+				undoButton.setEnabled(m.isUndoable());
+			}
+		});
+		
+
 		frame.pack();
 		frame.setVisible(true);
 	}
+
 }
