@@ -12,7 +12,7 @@ import java.awt.FlowLayout;
  * Created by kuro on 2016/10/13.
  */
 public class Main implements Runnable {
-	private static Settings settings;
+	public Settings settings;
 
 	public static void main(String args[]) {
 		SwingUtilities.invokeLater(new Main());
@@ -57,13 +57,20 @@ public class Main implements Runnable {
 		UndoButton buttonUndo = new UndoButton(view, model);
 		undoButton.addActionListener(buttonUndo);
 
+		//newGameButton作成
+		JButton newGameButton = new JButton();
+		newGameButton.setText("New Game");
+		buttonPanel.add(newGameButton);
+		NewGameButton buttonNew = new NewGameButton(new Main());
+		newGameButton.addActionListener(buttonNew);
+
 		model.addlistener(new BoardListener() {
 			@Override
 			public void updated(BoardModel m) {
 				undoButton.setEnabled(m.isUndoable());
 			}
 		});
-		
+
 		frame.pack();
 		frame.setVisible(true);
 	}
