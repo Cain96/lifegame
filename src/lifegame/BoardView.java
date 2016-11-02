@@ -74,11 +74,15 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	public void mousePressed(MouseEvent e) {
 
 		int mousePoint[] = {e.getX() / interval, e.getY() / interval};
-		boardModel.changeCellState(mousePoint[0], mousePoint[1]);
 
-		oldMousePoint = mousePoint.clone();
+		if ((0 <= mousePoint[0] && mousePoint[0] < c) && (0 <= mousePoint[1] && mousePoint[1] < r)) {
+			boardModel.changeCellState(mousePoint[0], mousePoint[1]);
 
-		repaint();
+			oldMousePoint = mousePoint.clone();
+			repaint();
+		} else {
+			return;
+		}
 	}
 
 	@Override
@@ -101,18 +105,23 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 
 		int mousePoint[] = {e.getX() / interval, e.getY() / interval};
 
-		if (Arrays.equals(mousePoint, oldMousePoint)) {
-			flag = false;
-		} else {
-			flag = true;
-		}
+		if ((0 <= mousePoint[0] && mousePoint[0] < c) && (0 <= mousePoint[1] && mousePoint[1] < r)) {
 
-		if (flag) {
-			boardModel.changeCellState(mousePoint[0], mousePoint[1]);
-			repaint();
-		}
+			if (Arrays.equals(mousePoint, oldMousePoint)) {
+				flag = false;
+			} else {
+				flag = true;
+			}
 
-		oldMousePoint = mousePoint.clone();
+			if (flag) {
+				boardModel.changeCellState(mousePoint[0], mousePoint[1]);
+				repaint();
+			}
+
+			oldMousePoint = mousePoint.clone();
+		}else{
+			return;
+		}
 	}
 
 	@Override
