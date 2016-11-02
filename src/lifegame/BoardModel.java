@@ -113,18 +113,20 @@ public class BoardModel {
 			int x0 = x + near[k][0];
 			int y0 = y + near[k][1];
 
-			try {
+			if ((0 <= x0 && x0 < cols) && (0 <= y0 && y0 < rows)) {
 				if (cells[x0][y0]) {
 					alive++;
 				}
-			} catch (ArrayIndexOutOfBoundsException e) {
+			} else {
 				continue;
 			}
 		}
 		return alive;
 	}
 
+
 	//生死決定method
+
 	private boolean deadOrAliveJudge(int i, int j, int aliveCount) {
 		if (aliveCount < 2 | 3 < aliveCount) { //2,3以外の時
 			if (cells[i][j]) {
@@ -143,10 +145,10 @@ public class BoardModel {
 
 	//巻き戻しmethod
 	public void undo() {
-		try {
+		if (cellsListHelper.returnListSize() != 0) {
 			cells = cellsListHelper.getList();
 			fireUpdate();
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} else {
 			System.out.println("Not Found");
 		}
 	}
