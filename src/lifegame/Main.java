@@ -63,8 +63,9 @@ public class Main implements Runnable {
 		buttonPanel.add(newGameButton);
 		NewGameButton buttonNew = new NewGameButton(new Main());
 		newGameButton.addActionListener(buttonNew);
+		undoButton.setEnabled(false); //初期状態の設定
 
-		model.addlistener(new BoardListener() {
+		model.addlistener(new BoardListener() { //paintをする度にundoボタンの仕様可否を検討
 			@Override
 			public void updated(BoardModel m) {
 				undoButton.setEnabled(m.isUndoable());
