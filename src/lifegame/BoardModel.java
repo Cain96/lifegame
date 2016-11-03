@@ -10,7 +10,6 @@ public class BoardModel {
 
 	private int cols;
 	private int rows;
-	private int oldCounter = 0;
 
 	private boolean[][] cells;
 
@@ -90,13 +89,11 @@ public class BoardModel {
 
 	//oldCellsに格納するmethod
 	private void addOldCells() {
-		if (oldCounter < 32) {
+		if (cellsListHelper.returnListSize() <= 32) {
 			cellsListHelper.addList(cells);
-			oldCounter++;
 		} else {
 			cellsListHelper.removeList();
 			cellsListHelper.addList(cells);
-			oldCounter++;
 		}
 	}
 
