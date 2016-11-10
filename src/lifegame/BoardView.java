@@ -35,17 +35,17 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 		w = this.getWidth() - 1;
 		h = this.getHeight() - 1;
 
-		interval = widthHeightCheck(w / r, h / c);
+		interval = widthHeightCheck(w / c, h / r);
 
-		for (int i = 0; i < c + 1; i++) {
-			g.drawLine(0, interval * i, interval * r, interval * i); //横線
-		}
 		for (int i = 0; i < r + 1; i++) {
-			g.drawLine(interval * i, 0, interval * i, interval * c); //縦線
+			g.drawLine(0, interval * i, interval * c, interval * i); //横線
+		}
+		for (int i = 0; i < c + 1; i++) {
+			g.drawLine(interval * i, 0, interval * i, interval * r); //縦線
 		}
 
-		for (int i = 0; i < r; i++) {
-			for (int j = 0; j < c; j++) {
+		for (int i = 0; i < c; i++) {
+			for (int j = 0; j < r; j++) {
 				if (boardModel.isAlive(i, j)) {
 					g.fillRect(fillCellCoordinate(i), fillCellCoordinate(j), interval, interval);
 				}

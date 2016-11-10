@@ -17,7 +17,7 @@ public class BoardModel {
 	private List<BoardListener> listeners;
 	private CellsListHelper cellsListHelper;
 
-	public BoardModel(int c, int r) {
+	public BoardModel(int r, int c) {
 		cols = c;
 		rows = r;
 		cells = new boolean[rows][cols];

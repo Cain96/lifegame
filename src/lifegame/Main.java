@@ -20,7 +20,7 @@ public class Main implements Runnable {
 
 	public void run() {
 		settings = new Settings();
-		BoardModel model = new BoardModel(settings.getCols(), settings.getRows());
+		BoardModel model = new BoardModel(settings.getRows(), settings.getCols());
 		model.addlistener(new BoardView(settings, model));
 
 		//ウィンドウの作成
