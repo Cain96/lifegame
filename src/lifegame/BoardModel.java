@@ -76,7 +76,7 @@ public class BoardModel {
 
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[0].length; j++) {
-				aliveCount = aliveCounter(i, j);
+				aliveCount = aliveCounter(j, i);
 				nextCells[i][j] = deadOrAliveJudge(i, j, aliveCount);
 			}
 		}
@@ -110,8 +110,8 @@ public class BoardModel {
 			int x0 = x + near[k][0];
 			int y0 = y + near[k][1];
 
-			if ((0 <= x0 && x0 < cols) && (0 <= y0 && y0 < rows)) {
-				if (cells[x0][y0]) {
+			if ((0 <= x0 && x0 < rows) && (0 <= y0 && y0 < cols)) {
+				if (cells[y0][x0]) {
 					alive++;
 				}
 			} else {
