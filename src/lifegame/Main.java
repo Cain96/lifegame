@@ -14,12 +14,15 @@ import java.awt.FlowLayout;
 public class Main implements Runnable {
 	public Settings settings;
 
+	public Main(Settings settings) {
+		this.settings = settings;
+	}
+
 	public static void main(String args[]) {
-		SwingUtilities.invokeLater(new Main());
+		SwingUtilities.invokeLater(new Main(new Settings()));
 	}
 
 	public void run() {
-		settings = new Settings();
 		BoardModel model = new BoardModel(settings.getRows(), settings.getCols());
 		model.addlistener(new BoardView(settings, model));
 
@@ -31,11 +34,11 @@ public class Main implements Runnable {
 		//ウィンドウ内部のベースパネルの作成
 		JPanel base = new JPanel();
 		frame.setContentPane(base);
-		frame.setPreferredSize(new Dimension(400, 300)); //希望サイズの指定
-		frame.setMinimumSize(new Dimension(300, 200)); //最小サイズの指定
+		frame.setPreferredSize(new Dimension(500, 300)); //希望サイズの指定
+		frame.setMinimumSize(new Dimension(500, 300)); //最小サイズの指定
 
 		base.setLayout(new BorderLayout());
-		BoardView view = new BoardView(new Settings(), model);
+		BoardView view = new BoardView(settings, model);
 		base.add(view, BorderLayout.CENTER); //baseの中心にviewを配置
 
 		//ボタンパネルの作成
@@ -61,7 +64,7 @@ public class Main implements Runnable {
 		JButton newGameButton = new JButton();
 		newGameButton.setText("New Game");
 		buttonPanel.add(newGameButton);
-		NewGameButton buttonNew = new NewGameButton(new Main());
+		NewGameButton buttonNew = new NewGameButton(new Main(settings));
 		newGameButton.addActionListener(buttonNew);
 		undoButton.setEnabled(false); //初期状態の設定
 
@@ -71,6 +74,13 @@ public class Main implements Runnable {
 				undoButton.setEnabled(m.isUndoable());
 			}
 		});
+
+		//changeSizeButton作成
+		JButton changeSizeButton = new JButton();
+		changeSizeButton.setText("Change Board Size");
+		buttonPanel.add(changeSizeButton);
+		ChangeSizeButton buttonChangeSize = new ChangeSizeButton(frame);
+		changeSizeButton.addActionListener(buttonChangeSize);
 
 		frame.pack();
 		frame.setVisible(true);
