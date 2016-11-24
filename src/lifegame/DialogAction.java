@@ -33,7 +33,7 @@ class DialogAction implements ActionListener {
 		Settings settings = new Settings();
 
 		if (e.getSource() == ok) {
-			if (!((numCols = cols.getText()).equals("")) && !((numRows = rows.getText()).equals(""))) {
+			if (isNumber((numCols = cols.getText())) && isNumber(numRows = rows.getText())) {
 				settings.setCols(Integer.parseInt(numCols));
 				settings.setRows(Integer.parseInt(numRows));
 				dialog.dispose();
@@ -44,5 +44,11 @@ class DialogAction implements ActionListener {
 			cols.setText("");
 			rows.setText("");
 		}
+	}
+
+	private boolean isNumber(String number) {
+		java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("^[0-9]*$");
+		java.util.regex.Matcher matcher = pattern.matcher(number);
+		return matcher.matches();
 	}
 }
