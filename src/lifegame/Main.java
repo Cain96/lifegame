@@ -31,12 +31,21 @@ public class Main implements Runnable {
 		//ウィンドウ内部のベースパネルの作成
 		JPanel base = new JPanel();
 		frame.setContentPane(base);
-		frame.setPreferredSize(new Dimension(400, 300)); //希望サイズの指定
-		frame.setMinimumSize(new Dimension(300, 200)); //最小サイズの指定
+		frame.setPreferredSize(new Dimension(350, 400)); //希望サイズの指定
+		frame.setMinimumSize(new Dimension(280, 320)); //最小サイズの指定
 
 		base.setLayout(new BorderLayout());
 		BoardView view = new BoardView(new Settings(), model);
 		base.add(view, BorderLayout.CENTER); //baseの中心にviewを配置
+
+		JPanel westPanel = new JPanel();
+		base.add(westPanel, BorderLayout.WEST);
+
+		JPanel eastPanel = new JPanel();
+		base.add(eastPanel, BorderLayout.EAST);
+
+		JPanel northPanel = new JPanel();
+		base.add(northPanel, BorderLayout.NORTH);
 
 		//ボタンパネルの作成
 		JPanel buttonPanel = new JPanel();
