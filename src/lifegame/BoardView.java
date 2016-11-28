@@ -8,7 +8,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.Arrays;
 
 /**
- * Created by kuro on 2016/10/26.
+ * Created by Cain96 on 2016/10/26.
  */
 public class BoardView extends JPanel implements MouseListener, MouseMotionListener, BoardListener {
 

@@ -9,7 +9,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 /**
- * Created by kuro on 2016/10/13.
+ * Created by Cain96 on 2016/10/13.
  */
 public class Main implements Runnable {
 	public Settings settings;

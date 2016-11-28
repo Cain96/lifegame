@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by kuro on 2016/10/25.
+ * Created by Cain96 on 2016/10/25.
  */
 public class CellsListHelper {
 	public List<boolean[][]> oldCellsList = new ArrayList<boolean[][]>();

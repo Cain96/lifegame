@@ -1,7 +1,7 @@
 package lifegame;
 
 /**
- * Created by kuro on 2016/10/25.
+ * Created by Cain96 on 2016/10/25.
  */
 public class Settings {
 
