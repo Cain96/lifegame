@@ -32,7 +32,7 @@ public class ChangeSizeButton extends JDialog implements ActionListener {
 		JPanel colsPanel = new JPanel();
 		colsPanel.setLayout(new BorderLayout());
 		//cols入力ボックス
-		JLabel colsLabel = new JLabel("縦入力");
+		JLabel colsLabel = new JLabel("横入力");
 		colsPanel.add(colsLabel, BorderLayout.NORTH);
 		JTextField colsField = new JTextField(5);
 		colsPanel.add(colsField, BorderLayout.SOUTH);
@@ -41,7 +41,7 @@ public class ChangeSizeButton extends JDialog implements ActionListener {
 		JPanel rowsPanel = new JPanel();
 		rowsPanel.setLayout(new BorderLayout());
 		//rows入力ボックス
-		JLabel rowsLabel = new JLabel("横入力");
+		JLabel rowsLabel = new JLabel("縦入力");
 		rowsPanel.add(rowsLabel, BorderLayout.NORTH);
 		JTextField rowsField = new JTextField(5);
 		rowsPanel.add(rowsField, BorderLayout.SOUTH);
