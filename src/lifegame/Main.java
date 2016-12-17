@@ -41,15 +41,6 @@ public class Main implements Runnable {
 		BoardView view = new BoardView(settings, model);
 		base.add(view, BorderLayout.CENTER); //baseの中心にviewを配置
 
-		JPanel westPanel = new JPanel();
-		base.add(westPanel, BorderLayout.WEST);
-
-		JPanel eastPanel = new JPanel();
-		base.add(eastPanel, BorderLayout.EAST);
-
-		JPanel northPanel = new JPanel();
-		base.add(northPanel, BorderLayout.NORTH);
-
 		//ボタンパネルの作成
 		JPanel buttonPanel = new JPanel();
 		base.add(buttonPanel, BorderLayout.SOUTH);

@@ -83,7 +83,6 @@ public class BoardModel {
 		for (int i = 0; i < cells.length; i++) {
 			cells[i] = nextCells[i].clone();
 		}
-
 		fireUpdate();
 	}
 

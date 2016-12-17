@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class BoardView extends JPanel implements MouseListener, MouseMotionListener, BoardListener {
 
-	private int c, r, w, h, interval;
+	private int c, r, interval;
 	private BoardModel boardModel;
 	private boolean flag = true;
 	private int oldMousePoint[] = new int[2];
@@ -32,38 +32,38 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		w = this.getWidth() - 1;
-		h = this.getHeight() - 1;
+		int startX, startY;
+		int w = this.getWidth();
+		int h = this.getHeight();
 
-		interval = widthHeightCheck(w / c, h / r);
+		interval = Math.min(w / c, h / r);
+
+		if (w < h) {
+			startX = 1;
+			startY = (h - interval * r) / 2;
+		} else {
+			startX = (w - interval * c) / 2;
+			startY = 1;
+		}
 
 		for (int i = 0; i < r + 1; i++) {
-			g.drawLine(0, interval * i, interval * c, interval * i); //横線
+			g.drawLine(startX, interval * i + startY, interval * c + startX, interval * i + startY); //横線
 		}
 		for (int i = 0; i < c + 1; i++) {
-			g.drawLine(interval * i, 0, interval * i, interval * r); //縦線
+			g.drawLine(interval * i + startX, startY, interval * i + startX, interval * r + startY); //縦線
 		}
 
 		for (int i = 0; i < c; i++) {
 			for (int j = 0; j < r; j++) {
 				if (boardModel.isAlive(i, j)) {
-					g.fillRect(fillCellCoordinate(i), fillCellCoordinate(j), interval, interval);
+					g.fillRect(fillCellCoordinate(i, startX), fillCellCoordinate(j, startY), interval, interval);
 				}
 			}
 		}
 	}
 
-	private int widthHeightCheck(int w, int h) {
-
-		if (w > h) {
-			return h;
-		} else {
-			return w;
-		}
-	}
-
-	private int fillCellCoordinate(int x) {
-		return x * interval;
+	private int fillCellCoordinate(int x, int start) {
+		return (x * interval) - start;
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 			}
 
 			oldMousePoint = mousePoint.clone();
-		}else{
+		} else {
 			return;
 		}
 	}
