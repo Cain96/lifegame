@@ -34,8 +34,8 @@ public class Main implements Runnable {
 		//ウィンドウ内部のベースパネルの作成
 		JPanel base = new JPanel();
 		frame.setContentPane(base);
-		frame.setPreferredSize(new Dimension(350, 400)); //希望サイズの指定
-		frame.setMinimumSize(new Dimension(280, 320)); //最小サイズの指定
+		frame.setPreferredSize(new Dimension(420, 480)); //希望サイズの指定
+		frame.setMinimumSize(new Dimension(420, 480)); //最小サイズの指定
 
 		base.setLayout(new BorderLayout());
 		BoardView view = new BoardView(settings, model);
