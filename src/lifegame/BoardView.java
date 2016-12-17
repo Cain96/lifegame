@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class BoardView extends JPanel implements MouseListener, MouseMotionListener, BoardListener {
 
-	private int c, r, interval;
+	private int c, r, interval, startX, startY;
 	private BoardModel boardModel;
 	private boolean flag = true;
 	private int oldMousePoint[] = new int[2];
@@ -32,13 +32,20 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		int startX, startY;
 		int w = this.getWidth();
 		int h = this.getHeight();
 
 		interval = Math.min(w / c, h / r);
 
-		if (w < h) {
+		if (c == r) {
+			if (w < h) {
+				startX = 1;
+				startY = (h - interval * r) / 2;
+			} else {
+				startX = (w - interval * c) / 2;
+				startY = 1;
+			}
+		} else if (r < c) {
 			startX = 1;
 			startY = (h - interval * r) / 2;
 		} else {
@@ -63,7 +70,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	}
 
 	private int fillCellCoordinate(int x, int start) {
-		return (x * interval) - start;
+		return x * interval + start;
 	}
 
 	@Override
@@ -73,7 +80,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	@Override
 	public void mousePressed(MouseEvent e) {
 
-		int mousePoint[] = {e.getX() / interval, e.getY() / interval};
+		int mousePoint[] = {pointChoice(e.getX(), startX) / interval, pointChoice(e.getY(), startY) / interval};
 
 		if ((0 <= mousePoint[0] && mousePoint[0] < c) && (0 <= mousePoint[1] && mousePoint[1] < r)) {
 			boardModel.changeCellState(mousePoint[0], mousePoint[1]);
@@ -103,7 +110,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	@Override
 	public void mouseDragged(MouseEvent e) {
 
-		int mousePoint[] = {e.getX() / interval, e.getY() / interval};
+		int mousePoint[] = {pointChoice(e.getX(), startX) / interval, pointChoice(e.getY(), startY) / interval};
 
 		if ((0 <= mousePoint[0] && mousePoint[0] < c) && (0 <= mousePoint[1] && mousePoint[1] < r)) {
 
@@ -133,5 +140,13 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	public void updated(BoardModel m) {
 		m.printForDebug();
 		System.out.println();
+	}
+
+	private int pointChoice(int x, int start) {
+		int point = x - start;
+		if (point < 0) {
+			point = -interval;
+		}
+		return point;
 	}
 }
