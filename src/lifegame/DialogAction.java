@@ -34,11 +34,14 @@ class DialogAction implements ActionListener {
 
 		if (e.getSource() == ok) {
 			if (isNumber((numCols = cols.getText())) && isNumber(numRows = rows.getText())) {
-				settings.setCols(Integer.parseInt(numCols));
-				settings.setRows(Integer.parseInt(numRows));
-				dialog.dispose();
-				owner.dispose();
-				SwingUtilities.invokeLater(new Main(settings));
+				int cols,rows;
+				if((cols = Integer.parseInt(numCols)) > 9 && (rows = Integer.parseInt(numRows)) > 9){
+					settings.setCols(cols);
+					settings.setRows(rows);
+					dialog.dispose();
+					owner.dispose();
+					SwingUtilities.invokeLater(new Main(settings));
+				}
 			}
 		} else {
 			cols.setText("");
