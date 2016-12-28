@@ -10,7 +10,6 @@ public class CellsListHelper {
 	public List<boolean[][]> oldCellsList = new ArrayList<boolean[][]>();
 	public boolean[][] oldCell;
 	private int c, r;
-	private Settings settings;
 
 	public CellsListHelper(Settings settings) {
 		c = settings.getCols();

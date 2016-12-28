@@ -17,12 +17,12 @@ public class BoardModel {
 	private List<BoardListener> listeners;
 	private CellsListHelper cellsListHelper;
 
-	public BoardModel(int r, int c) {
+	public BoardModel(int r, int c, Settings settings) {
 		cols = c;
 		rows = r;
 		cells = new boolean[rows][cols];
 		listeners = new ArrayList<BoardListener>();
-		cellsListHelper = new CellsListHelper(new Settings());
+		cellsListHelper = new CellsListHelper(settings);
 	}
 
 	public int getCols() {
