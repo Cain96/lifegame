@@ -109,7 +109,7 @@ public class BoardModel {
 			int x0 = x + near[k][0];
 			int y0 = y + near[k][1];
 
-			if ((0 <= x0 && x0 < rows) && (0 <= y0 && y0 < cols)) {
+			if ((0 <= x0 && x0 < cols) && (0 <= y0 && y0 < rows)) {
 				if (cells[y0][x0]) {
 					alive++;
 				}
