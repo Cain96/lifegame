@@ -37,21 +37,14 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 
 		interval = Math.min(w / c, h / r);
 
-		if (c == r) {
-			if (w < h) {
-				startX = 1;
-				startY = (h - interval * r) / 2;
-			} else {
-				startX = (w - interval * c) / 2;
-				startY = 1;
-			}
-		} else if (r < c) {
+		if (w < h) {
 			startX = 1;
 			startY = (h - interval * r) / 2;
 		} else {
 			startX = (w - interval * c) / 2;
 			startY = 1;
 		}
+
 
 		for (int i = 0; i < r + 1; i++) {
 			g.drawLine(startX, interval * i + startY, interval * c + startX, interval * i + startY); //横線
