@@ -32,8 +32,8 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		int w = this.getWidth();
-		int h = this.getHeight();
+		int w = this.getWidth()-2;
+		int h = this.getHeight()-2;
 
 		interval = Math.min(w / c, h / r);
 
@@ -120,6 +120,8 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 
 			oldMousePoint = mousePoint.clone();
 		} else {
+
+			oldMousePoint = new int[]{-1, -1};
 			return;
 		}
 	}
