@@ -88,7 +88,7 @@ public class BoardModel {
 
 	//oldCellsに格納するmethod
 	private void addOldCells() {
-		if (cellsListHelper.returnListSize() <= 32) {
+		if (cellsListHelper.returnListSize() < 32) {
 			cellsListHelper.addList(cells);
 		} else {
 			cellsListHelper.removeList();
